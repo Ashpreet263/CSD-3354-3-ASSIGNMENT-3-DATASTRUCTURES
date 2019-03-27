@@ -10,12 +10,19 @@ using System.Threading.Tasks;
 //Assignment 3
 
 namespace ConsoleApp3
+
 {
     public delegate void Sort_DataStructure();
 
+
     class Program
     {
-        static void Main(string[] args) { }
+        static void Main(string[] args)
+        {
+            Student a = new Student();
+            a.Announcement();
+
+        }
     }
 
     class Student
@@ -26,6 +33,30 @@ namespace ConsoleApp3
 
         // TODO: change this implementation so that the program pulls names from a Text File:
         // to do this, you must change the container for Student Names from Array to List
+        public void Announcement()
+        {
+            try
+            {
+
+                using (StreamReader sr = new StreamReader("U:/Users/723796/raman.txt"))
+                {
+                    string line;
+
+
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(line);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
+        }
+
         String[] names = new String[5] { "Bill", "Mary", "Laura", "Sam", "Steve" };
         Random r1;
 
@@ -103,34 +134,4 @@ namespace ConsoleApp3
         public void Sort() { }
     }
 
-}
-
-namespace BubbleSort
-{
-    class MySort
-    {
-        static void Main2(string[] args)
-        {
-            int[] arr = { 78, 55, 45, 98, 13 };
-            int temp;
-
-            for (int j = 0; j <= arr.Length - 2; j++)
-            {
-                for (int i = 0; i <= arr.Length - 2; i++)
-                {
-                    if (arr[i] > arr[i + 1])
-                    {
-                        temp = arr[i + 1];
-                        arr[i + 1] = arr[i];
-                        arr[i] = temp;
-                    }
-                }
-            }
-
-            Console.WriteLine("Sorted:");
-            foreach (int p in arr)
-                Console.Write(p + " ");
-            Console.Read();
-        }
-    }
 }
